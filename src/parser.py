@@ -1,6 +1,6 @@
 import re
 
-from command_parser import CommandParser
+from src.command_parser import CommandParser
 
 
 class Parser:

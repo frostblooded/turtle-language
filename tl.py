@@ -1,6 +1,6 @@
 import sys
 
-from parser import Parser
+from src.parser import Parser
 
 if __name__ == "__main__":
     arguments_count = len(sys.argv) - 1
