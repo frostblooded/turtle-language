@@ -33,16 +33,19 @@ class CommandParser:
         self.pen_handler.pen_active = False
 
     def draw_west(self, *args):
-        pass
+        self.pen_handler.draw(args[0], PenHandler.WEST_DEGREES)
 
     def draw_north(self, *args):
-        pass
+        self.pen_handler.draw(args[0], PenHandler.NORTH_DEGREES)
 
     def draw_east(self, *args):
-        pass
+        self.pen_handler.draw(args[0], PenHandler.EAST_DEGREES)
 
     def draw_south(self, *args):
-        pass
+        self.pen_handler.draw(args[0], PenHandler.SOUTH_DEGREES)
 
     def handle_command(self, command, arg):
+        if arg is not None:
+            arg = int(arg)
+
         self.commands[command](arg)
