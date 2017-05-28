@@ -1,5 +1,7 @@
 import re
 
+from command_parser import CommandParser
+
 
 class Parser:
     COMMENT_REGEX = r'#.*$'
@@ -14,17 +16,19 @@ class Parser:
         lines = contents.splitlines()
 
         for l in lines:
-            l = l.strip()
-            Parser.handle_command(l)
+            Parser.handle_line(l)
 
     @staticmethod
-    def handle_command(line):
+    def handle_line(line):
+        line = line.strip()
         split_line = line.split(' ')
         command = split_line[0]
         arg = None
 
         if len(split_line) > 1:
             arg = split_line[1]
+
+        CommandParser.handle_command(command, arg)
 
     @staticmethod
     def remove_comments(text):
