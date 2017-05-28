@@ -6,20 +6,21 @@ from src.command_parser import CommandParser
 class Parser:
     COMMENT_REGEX = r'#.*$'
 
-    @staticmethod
-    def parse_file(file_name):
+    def __init__(self):
+        self.command_parser = CommandParser()
+
+    def parse_file(self, file_name):
         file = open(file_name, 'r')
 
         contents = file.read()
-        contents = Parser.remove_comments(contents)
+        contents = self.remove_comments(contents)
 
         lines = contents.splitlines()
 
         for l in lines:
-            Parser.handle_line(l)
+            self.handle_line(l)
 
-    @staticmethod
-    def handle_line(line):
+    def handle_line(self, line):
         line = line.strip()
         split_line = line.split(' ')
         command = split_line[0]
@@ -28,8 +29,7 @@ class Parser:
         if len(split_line) > 1:
             arg = split_line[1]
 
-        CommandParser.handle_command(command, arg)
+        self.command_parser.handle_command(command, arg)
 
-    @staticmethod
-    def remove_comments(text):
+    def remove_comments(self, text):
         return re.sub(Parser.COMMENT_REGEX, '', text, flags=re.MULTILINE)

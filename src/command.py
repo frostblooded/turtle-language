@@ -1,7 +1,4 @@
-from enum import Enum
-
-
-class Command(Enum):
+class Command:
     PEN_CHOOSE = 'P'
     PEN_DOWN = 'D'
     PEN_UP = 'U'
