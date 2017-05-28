@@ -1,6 +1,7 @@
 from turtle import Turtle
 
 from src.command import Command
+from src.pen_handler import PenHandler
 
 
 class CommandParser:
@@ -15,23 +16,21 @@ class CommandParser:
             Command.DRAW_SOUTH: self.draw_south
         }
 
-        self.current_turtle = None
-        self.current_turtle_active = False
-        self.turtles = {}
+        self.pen_handler = PenHandler()
 
     def pen_choose(self, *args):
         new_pen = args[0]
 
-        if self.turtles.get(new_pen) is None:
-            self.turtles[new_pen] = Turtle()
+        if self.pen_handler.pens.get(new_pen) is None:
+            self.pen_handler.pens[new_pen] = Turtle()
 
-        self.current_turtle = self.turtles[new_pen]
+        self.pen_handler.pen_current = self.pen_handler.pens[new_pen]
 
     def pen_down(self, *args):
-        self.current_turtle_active = True
+        self.pen_handler.pen_active = True
 
     def pen_up(self, *args):
-        self.current_turtle_active = False
+        self.pen_handler.pen_active = False
 
     def draw_west(self, *args):
         pass
