@@ -3,3 +3,9 @@ class PenHandler:
         self.pens = {}
         self.pen_current = None
         self.pen_active = False
+
+    def draw(self, distance, radians):
+        if not self.pen_active:
+            return
+
+        # other stuff
