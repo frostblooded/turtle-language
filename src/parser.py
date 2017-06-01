@@ -14,8 +14,7 @@ class Parser:
 
         contents = file.read()
         contents = self.remove_comments(contents)
-
-        lines = contents.splitlines()
+        lines = self.get_lines(contents)
 
         for l in lines:
             self.handle_line(l)
@@ -31,5 +30,13 @@ class Parser:
 
         self.command_parser.handle_command(command, arg)
 
-    def remove_comments(self, text):
+    @staticmethod
+    def get_lines(contents):
+        lines = contents.splitlines()
+
+        # Return only non-empty lines
+        return [l for l in lines if l]
+
+    @staticmethod
+    def remove_comments(text):
         return re.sub(Parser.COMMENT_REGEX, '', text, flags=re.MULTILINE)

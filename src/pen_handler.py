@@ -4,6 +4,8 @@ class PenHandler:
     WEST_DEGREES = 180
     SOUTH_DEGREES = 270
 
+    DRAW_MULTIPLIER = 50
+
     def __init__(self):
         self.pens = {}
         self.pen_current = None
@@ -14,4 +16,4 @@ class PenHandler:
             return
 
         self.pen_current.setheading(degrees)
-        self.pen_current.forward(distance)
+        self.pen_current.forward(distance * self.DRAW_MULTIPLIER)
